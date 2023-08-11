@@ -147,10 +147,30 @@ get bucketsize for each key
         
         return result;
     }
+	vector<int> productExceptSelf(vector<int>& nums) {
+		int n = nums.size();
+		int findex = 1;
+		vector<int> result(n,1);
+		for (int i = 0; i < n; i++)
+		{
+			result[i] = findex;
+			findex = findex * nums[i];
+		}
+		int bindex = 1;
+		for (int i = n - 1; i >= 0; i--) {
+			result[i] = result[i] * bindex;
+			bindex = bindex * nums[i];
+		}
+		for (int i = 0; i < n; i++)
+		{
+			cout << result[i] << '\n';
+		}
+		return result;
+	}
 int main()
 {
-	std::vector<int> v = {7,7,3, 3, 3,5, 5, 5,5};
-	topKFrequent(v, 2);
+	std::vector<int> v = {1,2,3,4,4,4};
+	productExceptSelf(v);
 	std::cout << '\n';
 	return 0;
 }
